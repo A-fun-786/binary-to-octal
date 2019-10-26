@@ -1,0 +1,119 @@
+#include<iostream>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+	char s[10];
+	char a[10],b[10];
+	int flag=1,j=0,k=0;
+	char *check[]={"000","001","010","011","100","101","110","111"};
+
+		//compare given value in pockets of 3 with *check
+	std::cout<<"enter binary no ";
+	std::cin>>s;
+	int l=strlen(s);
+
+	for(int i=0;i<strlen(s);i++)
+		std::cout<<s[i];
+	
+	std::cout<<" ";
+	int i=0;
+	while(i<l)
+	{
+	    if(s[i]=='.')
+	    {
+		flag=0;
+        }
+        if(flag==1)
+        {
+        	 a[k]=s[i];
+	    	k++;
+        }
+		else
+	    {
+		    b[j]=s[i];
+		    j++;
+		}
+	i++;
+	}
+	
+	 while(k%3!=0)
+		{
+			for(int z=k-1;z>=0;z--)
+			{
+				a[z+1]=a[z];
+				
+		    } 
+		a[0]='0';
+		k++;
+		}
+    char **arr;
+		int d,t=0;
+		d=k/3;
+		
+    arr=(char**) malloc(10);
+	*arr=(char*) malloc(10);
+	for(int i=0;i<d;i++)
+    { 
+         for(int j=0;j<3;j++)
+         {
+		 arr[i][j]=a[t];
+		 t++;
+	      }
+	}
+
+	
+	char *ch;
+	ch=(char*) malloc(10);	
+	for(int i=0;i<d;i++)
+	  {
+	  	for(int j=0;j<8;j++)
+	  	{
+		    if(strcmp(*(check+j),*(arr+i))==0)
+	  	{
+	  		ch[i]='0'+j;
+	  		break;
+		  }
+	    }
+	    
+	}
+while((j-1)%3!=0)//j-1 is used as '.' is also used in j//
+		{
+		  b[j]='0';
+		j++;
+		}
+	char **brr;
+	int db,tb=1;
+	db=(j-1)/3;
+	
+			brr=(char**) malloc(10);
+	*brr=(char*) malloc(10);
+	for(int i=0;i<db;i++)
+    { 
+         for(int j=0;j<3;j++)
+         {
+		 brr[i][j]=b[tb];
+		 tb++;
+	      }
+	}
+	char *ch2;
+	ch2=(char*) malloc(10);
+	 for(int i=0;i<db;i++)
+	  {
+	  	for(int j=0;j<8;j++)
+	  	{
+		  
+		    if(strcmp(*(check+j),*(brr+i))==0)
+	  	{
+	  		
+	  		ch2[i]=j;
+	  		break;
+		  }
+	    }
+      }
+
+	char *ch1;
+	ch1=strcat(ch,".");
+	std::cout<<"octal value ="<<strcat(ch1,ch2);
+}
